@@ -29,6 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r dev-requirements.txt
           pip install --no-cache-dir -e .
+          pip install setuptools
 
       - name: Build Python Package
         shell: bash
@@ -65,16 +66,18 @@ jobs:
   run_sca_scanning:
     needs: [ build_application ]
     name: Run SCA Scanning Workflow
-    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sca_python.yml@v1.0.1
+    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sca_python.yml@v1.0.6
     secrets: inherit
     with:
       python-artifact-name: clearml
       python-source-dir: clearml
+      snyk-file-to-scan: requirements.txt
 
   run_sast_scanning:
     needs: [ build_application ]
     name: Run SCA Scanning Workflow
-    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sast_python.yml@v1.0.1
+    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sast_python.yml@v1.0.6
     secrets: inherit
     with:
       deepsource-scan-enabled: false
+      include-coverage-report: false

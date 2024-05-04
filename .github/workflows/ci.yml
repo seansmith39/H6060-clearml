@@ -66,7 +66,7 @@ jobs:
   run_sca_scanning:
     needs: [ build_application ]
     name: Run SCA Scanning Workflow
-    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sca_python.yml@Update_Python_Workflows
+    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sca_python.yml@v1.0.6
     secrets: inherit
     with:
       python-artifact-name: clearml
@@ -76,7 +76,7 @@ jobs:
   run_sast_scanning:
     needs: [ build_application ]
     name: Run SCA Scanning Workflow
-    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sast_python.yml@Update_Python_Workflows
+    uses: seansmith39/H6060-Experiment-Workflows/.github/workflows/experiment_1_sast_python.yml@v1.0.6
     secrets: inherit
     with:
       deepsource-scan-enabled: false
